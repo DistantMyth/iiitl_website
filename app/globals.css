@@ -2034,12 +2034,126 @@ details p {
   white-space: pre-line;
   overflow-wrap: anywhere;
 }
+.prose h2 {
+  font-size: 19px;
+  line-height: 1.4;
+  margin: 32px 0 10px;
+  color: var(--dark);
+  font-weight: 700;
+}
+.prose h3 {
+  font-size: 15px;
+  line-height: 1.45;
+  margin: 24px 0 8px;
+  color: var(--blue);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.prose h2:first-of-type,
+.prose h3:first-of-type {
+  margin-top: 0;
+}
+.prose > :first-child {
+  margin-top: 0;
+}
+.legacy-lead {
+  font-size: 16px !important;
+  color: var(--dark);
+}
+/* Real lists: the scrape's bullets used to be flattened into one paragraph. */
+.legacy-list {
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+}
+.legacy-list li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 9px;
+  font-size: 15px;
+  line-height: 1.75;
+  overflow-wrap: anywhere;
+}
+.legacy-list li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0.72em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+.legacy-list li.legacy-sub {
+  padding-left: 42px;
+  font-size: 14px;
+  color: #4a5b6b;
+}
+.legacy-list li.legacy-sub::before {
+  left: 24px;
+  width: 5px;
+  height: 5px;
+  background: none;
+  border: 1.5px solid var(--blue);
+}
+/* Per-page artwork sits where the old "NEW" starburst used to float. */
+.page-art {
+  display: block;
+  float: left;
+  width: 168px;
+  height: 168px;
+  margin: 2px 34px 20px 0;
+  color: var(--blue);
+  opacity: 0.9;
+}
+.page-art svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  /* The Noun Project marks ship as black fills; currentColor recolours them
+     to the brand blue without touching the source files. */
+  fill: currentColor;
+}
+/* The Government of India RTI mark keeps its own two-tone blue. */
+.page-art-logo {
+  width: 210px;
+  height: 136px;
+  color: inherit;
+}
+.page-art-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+/* On a phone a floated mark squeezes the measure too far, so it centres above
+   the text instead, the way the old lead image used to read. */
+@media (max-width: 700px) {
+  .page-art,
+  .page-art-logo {
+    float: none;
+    width: 132px;
+    height: 132px;
+    margin: 0 auto 20px;
+  }
+  .page-art-logo {
+    height: 86px;
+  }
+  .page-art-logo img {
+    object-position: center;
+  }
+  .legacy-image {
+    float: none;
+    max-width: 100%;
+    margin: 0 auto 20px;
+  }
+}
 .legacy-image {
-  max-height: 330px;
+  max-height: 250px;
   object-fit: contain;
   float: left;
-  margin: 0 25px 20px 0;
-  max-width: 45%;
+  margin: 4px 30px 22px 0;
+  max-width: 34%;
 }
 .resource-grid {
   display: grid;
@@ -3621,20 +3735,31 @@ details p {
   user-select: none;
   -webkit-user-drag: none;
 }
-/* Tuned down for backdrop duty: present, never loud. */
+/* Tuned down for backdrop duty: present, never loud. The corridor needs a
+   little more presence than a flat 16% wash to read as depth, so the cards
+   carry their own contrast and the field fades in from the left instead of
+   starting from nothing. */
 .image-stream.is-backdrop .image-stream-field {
-  opacity: 0.16;
-  mask-image: linear-gradient(90deg, transparent 0%, #000 55%, #000 100%);
-  -webkit-mask-image: linear-gradient(
-    90deg,
+  opacity: 0.5;
+  mask-image: linear-gradient(
+    100deg,
     transparent 0%,
-    #000 55%,
+    #0006 18%,
+    #000d 48%,
+    #000 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    100deg,
+    transparent 0%,
+    #0006 18%,
+    #000d 48%,
     #000 100%
   );
 }
 .image-stream.is-backdrop .image-stream-card {
-  box-shadow: none;
-  border: 1px solid #ffffff8c;
+  box-shadow: 0 10px 30px -12px #0b35524d;
+  border: 1px solid #ffffffb3;
+  background: #ffffff;
 }
 
 /* ============================================================

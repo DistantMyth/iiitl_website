@@ -199,16 +199,21 @@ errors, and mobile stacks to one column at 390px with 0px horizontal overflow.
 `lib/legacy.json` referenced three legacy GIFs across 17 imported pages, two of
 which (`cleardot.gif`, `new_blink.gif`) did not exist in the repository at all:
 
-| Old                                      | Used by  | Replaced with                         |
-| ---------------------------------------- | -------- | ------------------------------------- |
-| `new-icon-animation.gif` (red starburst) | 16 pages | `public/assets/images/new-badge.svg`  |
-| `new_blink.gif` (missing)                | 1 page   | `public/assets/images/new-badge.svg`  |
-| `cleardot.gif` (missing)                 | 1 page   | `public/assets/images/bullet-dot.svg` |
+| Old                                      | Used by  | Replaced with                                                  |
+| ---------------------------------------- | -------- | -------------------------------------------------------------- |
+| `new-icon-animation.gif` (red starburst) | 16 pages | Per-page artwork, `public/assets/images/page-art/` (see below) |
+| `new_blink.gif` (missing)                | 1 page   | Per-page artwork, `public/assets/images/page-art/` (see below) |
+| `cleardot.gif` (missing)                 | 1 page   | CSS list bullet, `.legacy-list li::before`                     |
 
-The replacements are SVG: a twelve-point green rosette reading NEW, and a green
-bullet. Both are resolution-independent and a fraction of the weight. An audit
-of all 99 distinct image references in `lib/legacy.json` now reports **0
-missing**.
+The starburst was one generic "NEW" graphic attached to all 16 pages, so it
+told a visitor nothing about any of them. Each page now gets a relevant,
+licence-free illustration instead: the Government of India's Right to
+Information logo on the two RTI pages, and CC0 "Noun Project" marks elsewhere
+(graduation cap, briefcase, microscope, chart and so on), tinted to the brand
+blue with `currentColor`. Sources and licences are listed in
+`assets/images/page-art/SOURCES.md`; the page-to-file mapping is
+`lib/page-art.ts`, and `scripts/migrate-content.py` now drops these decorative
+scrape images so they cannot come back.
 
 The broken-image check in `scripts/browser-check.mjs` was also producing false
 positives. It counted any `img` with `!complete`, which includes `loading="lazy"`
@@ -368,3 +373,52 @@ Retain these checks if the photograph, fonts, scene dimensions, or animation tim
 ### Follow-up: uppercase entrance animation
 
 The campus title is now `IIIT LUCKNOW`. Its particles assemble from below while the wordmark rises from behind the building silhouette, completing by 55% of the scene's scroll interval. The completed text holds at its resting position instead of dispersing or continuing downward; the building retains its subtle parallax. Reduced motion shows the completed composition immediately. The focused browser regression checks now verify increasing text visibility, upward movement, a stable completed wordmark, aligned image layers, and responsive rendering.
+
+## Legacy page structure and per-page artwork — 30 September 2026
+
+### Why the RTI page read as one run-on line
+
+`scripts/migrate-content.py` flattened each page with `get_text(' ', strip=True)`.
+That joins every block with a single space, so every `<li>` and heading in the
+source collapsed into one paragraph and the literal `●` glyphs were left
+stranded mid-sentence. The renderer then re-split the text by length
+(`match(/.{1,800}(?:\s|$)/g)`), which cannot recover structure that the scrape
+had already destroyed — it only cut the blob at arbitrary 800-character
+boundaries.
+
+The fix is at the source. `structured_text()` appends a non-whitespace sentinel
+to every block-level element before extracting text, so `get_text`'s per-node
+strip preserves the boundary; the sentinel is then replaced with a newline.
+Recovered structure is checked into `lib/legacy.json` and `lib/news.json`, so no
+re-scrape is needed.
+
+`components/legacy-blocks.tsx` renders those lines: clause numbers pair with
+their titles (`1.1` + `Name and Title of the Act`), bullets become real `<ul>`
+items with a nested variant for sub-points, and unrecognised lines fall back to
+paragraphs. The institute name that the scrape repeats at the top of every page
+is dropped, since the hero above already states it. On `/statutory/rti` this
+yields 14 lists and 26 items with no stray bullet glyphs.
+
+### Artwork
+
+The generic "NEW" starburst is gone from all 16 pages that carried it; see
+"Outdated assets replaced" above. `lib/page-art.ts` maps each page to a
+relevant, licence-free illustration, `components/page-art.tsx` inlines the SVG
+so it inherits the brand blue, and the Government of India RTI logo keeps its
+official colours as a raster. The marks are decorative, so they are
+`aria-hidden` and carry empty alt text.
+
+### Homepage backdrop clipping
+
+`ImageStreamHero` measures every corridor length in `cqw` — a percentage of the
+container's _width_ — while the homepage hero is short and wide (475px tall). The
+default exit height therefore projected cards up to 678px tall inside a 475px
+box, clipping 4 of 14 cards and tearing the ribbon. The homepage now passes
+`path={{ exitHeight: 21, railExit: 34, turnExit: 22 }}`, which keeps the
+corridor inside the hero at every viewport; the shared component's defaults are
+unchanged for its other uses. The backdrop was also raised from a flat 16% wash
+to 50% with a directional mask so the corridor reads as depth.
+
+`npm test` covers the list recovery and the badge removal in
+`tests/legacy-blocks.test.ts`. Retain those checks if `migrate-content.py` or
+`lib/legacy.json` is regenerated.

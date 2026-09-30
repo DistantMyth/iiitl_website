@@ -63,8 +63,14 @@ export function Home({
         className="home-hero is-backdrop"
         images={STREAM_IMAGES}
         cards={7}
-        speed={30}
-        axis={62}
+        speed={34}
+        axis={58}
+        // The hero is short and wide (about 475px tall), while the corridor
+        // measures every length in cqw -- a percentage of its *width*. The
+        // default exit height therefore projects cards far taller than the hero
+        // and the ribbon gets clipped top and bottom. These values keep the
+        // whole corridor inside the box at any viewport.
+        path={{ exitHeight: 21, railExit: 34, turnExit: 22 }}
       >
         <div className="hero-copy">
           <div className="hero-eyebrow">

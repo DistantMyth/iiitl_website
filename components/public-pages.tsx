@@ -27,6 +27,9 @@ import { Modal, Login } from "./shell";
 import { MarqueeRows } from "./marquee-rows";
 import { GalleryCarousel } from "./gallery-carousel";
 import { PhotoChoreography } from "./photo-choreography";
+import { LegacyBody } from "./legacy-blocks";
+import { PageArt } from "./page-art";
+import { PAGE_ART } from "@/lib/page-art";
 export type Legacy = {
   slug: string;
   title: string;
@@ -822,24 +825,34 @@ export function LegacyPage({
   page: Legacy | null;
   title: string;
 }) {
+  // Per-page artwork from lib/page-art.ts. These pages carried a single
+  // generic "NEW" starburst between them, which said nothing about the page;
+  // the map gives each one a relevant, licence-free illustration instead.
+  const art = page ? PAGE_ART[page.slug as keyof typeof PAGE_ART] : undefined;
+
   return (
     <>
       <PageHero title={page?.title || title} kicker="INSTITUTE INFORMATION" />
       <section className="section">
         <div className="legacy-layout">
           <article className="prose">
-            {page?.images[0] && (
-              <img
-                className="legacy-image"
-                src={page.images[0]}
-                alt={page.title}
-                loading="lazy"
-              />
+            {art ? (
+              // Inline so the artwork inherits the brand blue: the SVGs use
+              // currentColor, which an <img> src cannot resolve.
+              <PageArt name={art} />
+            ) : (
+              page?.images[0] && (
+                <img
+                  className="legacy-image"
+                  src={page.images[0]}
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                />
+              )
             )}
             {page?.text ? (
-              page.text
-                .match(/.{1,800}(?:\s|$)/g)
-                ?.map((t, i) => <p key={i}>{t}</p>)
+              <LegacyBody text={page.text} />
             ) : (
               <>
                 <h2>{title}</h2>
