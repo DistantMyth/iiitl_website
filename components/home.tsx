@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { AnimatedWords, CountUp } from "./site-motion";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -29,25 +30,6 @@ const STREAM_IMAGES = [
   { src: "/assets/images/girls_hostel_galary_2.jpg", alt: "" },
   { src: "/assets/images/table_tennis_team.jpg", alt: "" },
 ];
-export function Motion() {
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("revealed");
-            observer.unobserve(e.target);
-          }
-        }),
-      { threshold: 0.1 },
-    );
-    document
-      .querySelectorAll("[data-reveal]")
-      .forEach((e) => observer.observe(e));
-    return () => observer.disconnect();
-  }, []);
-  return null;
-}
 export function Home({
   news,
 }: {
@@ -58,7 +40,6 @@ export function Home({
 
   return (
     <main id="main">
-      <Motion />
       <ImageStreamHero
         className="home-hero is-backdrop"
         images={STREAM_IMAGES}
@@ -84,14 +65,7 @@ export function Home({
             <span>IMPACT</span>
           </div>
           <h1>
-            {data.hero.includes("tomorrow") ? (
-              <>
-                {data.hero.split("tomorrow")[0]}
-                <em>tomorrow.</em>
-              </>
-            ) : (
-              data.hero
-            )}
+            <AnimatedWords text={data.hero} accent="tomorrow" />
           </h1>
           <div className="hero-bottom">
             <p>
@@ -216,9 +190,9 @@ export function Home({
           [data.stats[1], "B.Tech pathways", "Find your own direction"],
           [data.stats[2], "Our beginning", "A growing community of innovators"],
           ["∞", "Possibilities ahead", "Knowledge has no finish line"],
-        ].map(([n, t, d]) => (
+        ].map(([n, t, d], index) => (
           <div key={t}>
-            <strong>{n}</strong>
+            <strong>{index < 2 ? <CountUp value={n} /> : n}</strong>
             <h3>{t}</h3>
             <span>{d}</span>
           </div>

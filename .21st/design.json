@@ -1,0 +1,141 @@
+{
+  "version": 1,
+  "project": {
+    "name": "iiitl-campus",
+    "productType": "Public institute website and campus portal",
+    "stack": ["nextjs", "react", "tailwind-v4"]
+  },
+  "sources": {
+    "tokens": ["app/globals.css"],
+    "components": [],
+    "assets": ["public/brand", "assets"],
+    "instructions": []
+  },
+  "design": {
+    "colorMode": "light",
+    "colors": {
+      "--color-brand-primary": {
+        "value": "#005f99",
+        "source": "app/globals.css"
+      },
+      "--color-brand-dark": {
+        "value": "#00446d",
+        "source": "app/globals.css"
+      },
+      "--color-brand-navy": {
+        "value": "#172b3a",
+        "source": "app/globals.css"
+      },
+      "--color-brand-light": {
+        "value": "#e6f2f9",
+        "source": "app/globals.css"
+      },
+      "--color-brand-gray": {
+        "value": "#f7fafc",
+        "source": "app/globals.css"
+      },
+      "--color-brand-green": {
+        "value": "#008325",
+        "source": "app/globals.css"
+      },
+      "--border": {
+        "value": "#677f90",
+        "source": "app/globals.css"
+      },
+      "--muted": {
+        "value": "#263b49",
+        "source": "app/globals.css"
+      },
+      "--ring": {
+        "value": "0 0 0 3px #0a6fae2e",
+        "source": "app/globals.css"
+      },
+      "--ring-green": {
+        "value": "0 0 0 3px #00832533",
+        "source": "app/globals.css"
+      }
+    },
+    "typography": {},
+    "spacing": {},
+    "radius": {},
+    "shadows": {
+      "--shadow-xs": {
+        "value": "0 1px 2px -1px #00000040",
+        "source": "app/globals.css"
+      },
+      "--shadow-sm": {
+        "value": "0 1px 2px #00000030, 0 2px 6px -2px #00000030",
+        "source": "app/globals.css"
+      },
+      "--shadow-md": {
+        "value": "0 2px 4px -2px #00000030, 0 8px 18px -8px #00000040",
+        "source": "app/globals.css"
+      },
+      "--shadow-lg": {
+        "value": "0 4px 8px -4px #00000030, 0 18px 36px -14px #0000004d",
+        "source": "app/globals.css"
+      },
+      "--shadow-xl": {
+        "value": "0 8px 16px -8px #00000038, 0 32px 60px -24px #00000059",
+        "source": "app/globals.css"
+      },
+      "--shadow-blue": {
+        "value": "0 4px 14px -4px #005f9966",
+        "source": "app/globals.css"
+      },
+      "--shadow-blue-lg": {
+        "value": "0 8px 26px -8px #005f9980",
+        "source": "app/globals.css"
+      }
+    },
+    "motion": {
+      "--hide-ease": {
+        "value": "cubic-bezier(0.32, 0.72, 0.24, 1)",
+        "source": "app/globals.css"
+      }
+    },
+    "density": "unknown"
+  },
+  "components": {
+    "installed": [],
+    "preferredPrimitives": ["radix-ui"],
+    "patterns": []
+  },
+  "constraints": {
+    "must": [
+      "Use existing brand tokens and GSAP runtime.",
+      "Honor reduced motion and preserve full accessible text.",
+      "Limit cursor effects to mouse input; keep touch and keyboard controls stable."
+    ],
+    "avoid": [
+      "Additional scroll pinning for decorative reveals.",
+      "New animation runtime dependencies."
+    ]
+  },
+  "decisions": [
+    "Use a coordinated motion vocabulary inspired by 21st.dev: word entrances, once-only staggered reveals, restrained magnetic buttons, and numeric count-ups."
+  ],
+  "evidence": [
+    {
+      "fact": "design.colorMode:light",
+      "source": "app/globals.css"
+    },
+    {
+      "fact": "design.tokens",
+      "source": "app/globals.css"
+    },
+    {
+      "fact": "project.stack:nextjs",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:react",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:tailwind-v4",
+      "source": "package.json"
+    }
+  ],
+  "generatedAt": "2026-09-30T11:57:30.930Z"
+}

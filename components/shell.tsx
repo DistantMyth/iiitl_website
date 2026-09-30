@@ -14,6 +14,7 @@ import {
   Minus,
   Plus,
 } from "lucide-react";
+import { SiteMotion } from "./site-motion";
 import { groups, roles, programs, programPath } from "@/lib/catalog";
 export function Modal({
   title,
@@ -386,6 +387,7 @@ export function Footer() {
 export function Shell({ children }: { children: React.ReactNode }) {
   return (
     <div id="top">
+      <SiteMotion />
       <Header />
       {children}
       <Footer />

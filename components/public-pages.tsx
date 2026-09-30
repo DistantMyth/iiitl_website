@@ -26,6 +26,7 @@ import { useDemo } from "./provider";
 import { Modal, Login } from "./shell";
 import { MarqueeRows } from "./marquee-rows";
 import { GalleryCarousel } from "./gallery-carousel";
+import { AnimatedWords } from "./site-motion";
 import { PhotoChoreography } from "./photo-choreography";
 import { LegacyBody } from "./legacy-blocks";
 import { PageArt } from "./page-art";
@@ -55,7 +56,9 @@ export function PageHero({
         {kicker.replaceAll("EXPLORE ", "")}
       </div>
       <span className="eyebrow">{kicker}</span>
-      <h1>{title}</h1>
+      <h1>
+        <AnimatedWords text={title} />
+      </h1>
       {description && <p>{description}</p>}
       <span className="page-hero-decoration" aria-hidden="true">
         ↗
@@ -1028,7 +1031,7 @@ function CampusChoreography() {
     <PhotoChoreography
       label="Moments across campus"
       images={{
-        topLeft: "/assets/images/landing-inner-campustour.jpg",
+        topLeft: "/assets/images/girls_hostel_galary_2.jpg",
         topRight: "/assets/images/homepage/institute-pic-f.jpg",
         bottomLeft: "/assets/images/lab2_1.jpg",
         bottomRight: "/assets/images/convocation-pics.jpg",
@@ -1100,7 +1103,7 @@ function CampusCoverflow() {
         slides={CAMPUS_PHOTOS}
         // Upstream is manual; this one turns on its own and stops the moment
         // anyone hovers, focuses, drags or tabs away.
-        autoRotate={4200}
+        autoRotate={3000}
         label="Campus moments"
         onSelect={(slide) => setOpen({ src: slide.src, alt: slide.alt })}
       />

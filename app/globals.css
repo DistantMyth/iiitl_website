@@ -2574,17 +2574,41 @@ details p {
 .high-contrast p {
   color: var(--navy);
 }
-[data-reveal] {
-  animation: reveal linear both;
-  animation-timeline: view();
-  animation-range: entry 0% entry 20%;
+/* 21st-inspired word masks keep headings as ordinary readable text. */
+.motion-word-mask {
+  display: inline-block;
+  overflow: clip;
+  vertical-align: bottom;
+  padding: 0.12em 0.025em;
+  margin: -0.12em -0.025em;
+  white-space: pre;
 }
-@keyframes reveal {
-  from {
-    transform: translateY(30px);
+.motion-word {
+  display: inline-block;
+  transform-origin: left bottom;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  main .btn {
+    transition:
+      background-color 0.25s,
+      box-shadow 0.25s,
+      color 0.25s;
   }
-  to {
-    transform: none;
+  main .btn svg,
+  .text-link svg,
+  .card-link svg {
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  main .btn:hover svg,
+  .text-link:hover svg,
+  .program-card:hover .card-link svg {
+    transform: translate(3px, -2px);
+  }
+  .choreo-card img {
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .choreo-card:hover img {
+    transform: scale(1.045);
   }
 }
 @keyframes nudge {
@@ -3854,66 +3878,72 @@ details p {
   margin: 6px 0 4px;
 }
 
-/* ============================================================
-   Photo choreography
-   Adapted from website_temp_external_components/scroll-choreography.
-   The four cards are laid out scattered and GSAP gathers them; CSS
-   only owns the scattered start state and the sticky stage.
-   ============================================================ */
+/* Campus photo composition */
 .choreo {
-  position: relative;
+  margin: clamp(40px, 6vw, 80px) 0;
 }
-.choreo-sticky {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow: hidden;
-  display: grid;
-  place-items: center;
+.choreo-heading {
+  margin-bottom: 24px;
+}
+.choreo-heading h2 {
+  margin: 8px 0 0;
 }
 .choreo-stage {
-  position: relative;
-  width: min(86vw, 1000px);
-  aspect-ratio: 16 / 9;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  aspect-ratio: 2 / 1;
 }
 .choreo-card {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 56%;
-  aspect-ratio: 4 / 3;
-  margin-left: -28%;
-  margin-top: -23.4375%;
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
   overflow: hidden;
   border-radius: 14px;
-  box-shadow: var(--shadow-lg);
-  will-change: transform, opacity;
+  background: var(--light);
 }
 .choreo-card img {
+  display: block;
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
-/* The scattered start state. The hero begins centred; the other three sit
-   out toward the corners and travel inward as the scroll runs. */
-.choreo-a {
-  x: -52%;
-  y: -46%;
-  z-index: 1;
-}
-.choreo-b {
-  x: 52%;
-  y: 48%;
-  z-index: 2;
-}
-.choreo-c {
-  x: -50%;
-  y: 46%;
-  z-index: 3;
+.choreo-card figcaption {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 32px 18px 16px;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
 }
 .choreo-hero {
-  z-index: 4;
-  width: 56%;
+  grid-row: span 2;
+}
+.choreo-b {
+  grid-column: 2 / 4;
+}
+@media (max-width: 767px) {
+  .choreo-stage {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+    aspect-ratio: auto;
+    gap: 12px;
+  }
+  .choreo-card {
+    aspect-ratio: 4 / 3;
+  }
+  .choreo-hero {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    aspect-ratio: 16 / 9;
+  }
+  .choreo-b {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 9;
+  }
 }
 /* A quiet cue that the campus carousel is turning on its own. The rotation
    stops on hover/focus/drag, so this fades out in exactly those states. */
