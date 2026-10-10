@@ -54,16 +54,6 @@ export function Home({
         path={{ exitHeight: 21, railExit: 34, turnExit: 22 }}
       >
         <div className="hero-copy">
-          <div className="hero-eyebrow">
-            <span className="little-line" />
-            <span>LEARN</span>
-            <i />
-            <span>INNOVATE</span>
-            <i />
-            <span>BUILD</span>
-            <i />
-            <span>IMPACT</span>
-          </div>
           <h1>
             <AnimatedWords text={data.hero} accent="tomorrow" />
           </h1>
@@ -81,9 +71,6 @@ export function Home({
               </Link>
             </div>
           </div>
-          <a className="scroll-cue" href="#campus">
-            A new perspective <ArrowDown size={15} />
-          </a>
         </div>
         <div className="hero-orbit" aria-hidden="true">
           <span />
@@ -110,9 +97,6 @@ export function Home({
       </div>
       <section className="section intro-section" data-reveal>
         <div>
-          <span className="eyebrow">
-            SMALL ENOUGH TO BELONG. BOLD ENOUGH TO LEAD.
-          </span>
           <h2>
             Big ideas.
             <br />
@@ -145,7 +129,6 @@ export function Home({
           />
         </div>
         <div className="emblem-copy">
-          <span className="eyebrow">THE MARK</span>
           <h2>
             Knowledge, drawn
             <br />
@@ -201,7 +184,6 @@ export function Home({
       <section className="program-section section" data-reveal>
         <div className="section-heading">
           <div>
-            <span className="eyebrow">MAKE CURIOSITY YOUR CALLING</span>
             <h2>
               Find your <em>direction.</em>
             </h2>
@@ -261,7 +243,6 @@ export function Home({
           <small>Questions worth pursuing.</small>
         </div>
         <div>
-          <span className="eyebrow">RESEARCH WITHOUT LIMITS</span>
           <h2>
             The next breakthrough
             <br />
@@ -295,7 +276,6 @@ export function Home({
       <section className="section news-section" data-reveal>
         <div className="section-heading">
           <div>
-            <span className="eyebrow">IN THE LOOP</span>
             <h2>
               Happening <em>here.</em>
             </h2>
@@ -307,9 +287,6 @@ export function Home({
         <div className="news-grid">
           {news.slice(0, 3).map((n, i) => (
             <Link className="news-card" key={n.slug} href={`/news/${n.slug}`}>
-              <span className="news-category">
-                {["ON CAMPUS", "LEARNING", "ANNOUNCEMENT"][i]}
-              </span>
               <h3>{n.title}</h3>
               <div>
                 <span>
@@ -327,7 +304,6 @@ export function Home({
         </div>
       </section>
       <section className="vision-banner">
-        <span className="eyebrow">YOUR NEXT CHAPTER</span>
         <h2>
           Somewhere between
           <br />
@@ -336,9 +312,6 @@ export function Home({
         <Link className="btn white" href="/admissions">
           Begin at IIIT Lucknow <MoveUpRight size={18} />
         </Link>
-        <span className="vision-word" aria-hidden="true">
-          IMAGINE.
-        </span>
       </section>
     </main>
   );

@@ -44,7 +44,6 @@ export function PhotoChoreography({
   return (
     <section className="choreo" ref={rootRef} aria-label={label}>
       <div className="choreo-heading">
-        <span className="eyebrow">Around campus</span>
         <h2>{label}</h2>
       </div>
       <div className="choreo-stage">
