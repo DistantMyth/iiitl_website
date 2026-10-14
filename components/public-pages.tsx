@@ -55,14 +55,10 @@ export function PageHero({
         <span>/</span>
         {kicker.replaceAll("EXPLORE ", "")}
       </div>
-      <span className="eyebrow">{kicker}</span>
       <h1>
         <AnimatedWords text={title} />
       </h1>
       {description && <p>{description}</p>}
-      <span className="page-hero-decoration" aria-hidden="true">
-        ↗
-      </span>
     </section>
   );
 }
@@ -428,7 +424,6 @@ export function Admissions() {
             ))}
           </div>
           <aside className="panel">
-            <span className="eyebrow">ADMISSION RESOURCES</span>
             <h3>Everything you need to begin.</h3>
             <p>
               Dates, fees, eligibility, and seat availability are governed by
@@ -1095,7 +1090,6 @@ function CampusCoverflow() {
   const [open, setOpen] = useState<{ src: string; alt: string } | null>(null);
   return (
     <div className="marquee-wrap">
-      <span className="eyebrow">AROUND THE INSTITUTE</span>
       <h2>
         Moments worth <em>staying for.</em>
       </h2>
@@ -1123,7 +1117,6 @@ function CampusCoverflow() {
 function CampusMarquee() {
   return (
     <div className="marquee-wrap">
-      <span className="eyebrow">LIFE AROUND CAMPUS</span>
       <h2>
         There is more to <em>the routine.</em>
       </h2>

@@ -594,41 +594,7 @@ summary:focus-visible {
   background: linear-gradient(90deg, var(--green) 0%, var(--saffron) 100%);
   flex-shrink: 0;
 }
-.hero-eyebrow {
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  color: var(--blue);
-  margin-bottom: 30px;
-  font-weight: 700;
-}
-.hero-eyebrow > span {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-.hero-eyebrow > span:nth-of-type(1),
-.hero-eyebrow > span:nth-of-type(3) {
-  color: var(--green);
-}
-.hero-eyebrow > span:nth-of-type(2),
-.hero-eyebrow > span:nth-of-type(4) {
-  color: var(--saffron);
-}
-.hero-eyebrow i {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--blue-300);
-}
-.little-line {
-  height: 3px;
-  background: linear-gradient(90deg, var(--green) 0%, var(--saffron) 100%);
-  width: 38px;
-  border-radius: 3px;
-}
+
 .home-hero {
   position: relative;
   overflow: hidden;
@@ -754,17 +720,7 @@ summary:focus-visible {
   padding: 7px 13px;
   font-size: 11px;
 }
-.scroll-cue {
-  display: flex;
-  gap: 17px;
-  align-items: center;
-  font-size: 10px;
-  color: var(--muted);
-  margin-top: 36px;
-}
-.scroll-cue svg {
-  animation: nudge 2s infinite;
-}
+
 .hero-orbit {
   position: absolute;
   width: 330px;
@@ -1371,28 +1327,11 @@ summary:focus-visible {
 .news-card:hover {
   transform: translateX(5px);
 }
-.news-category,
 .news-card time {
   font-size: 9px;
   letter-spacing: 0.1em;
   color: var(--blue);
   margin-bottom: 20px;
-}
-.news-category {
-  align-self: flex-start;
-  width: fit-content;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: var(--green-pale);
-  color: var(--green);
-  border: 1px solid #c9e8d3;
-  font-weight: 700;
-  margin-bottom: 16px;
-}
-.news-card:hover .news-category {
-  background: var(--saffron-pale);
-  color: #b45a10;
-  border-color: #f4d9bd;
 }
 .news-card h3 {
   font-size: 22px;
@@ -1439,17 +1378,7 @@ summary:focus-visible {
   z-index: 1;
   margin-top: 15px;
 }
-.vision-word {
-  position: absolute;
-  bottom: -100px;
-  left: 0;
-  right: 0;
-  font-size: clamp(140px, 20vw, 300px);
-  font-weight: 700;
-  letter-spacing: -0.05em;
-  color: #ffffff05;
-  pointer-events: none;
-}
+
 footer {
   background:
     linear-gradient(90deg, var(--green) 0%, #0a6fae 40%, var(--saffron) 100%)
@@ -1708,14 +1637,7 @@ footer p {
 .page-hero .eyebrow {
   margin-bottom: 17px;
 }
-.page-hero-decoration {
-  position: absolute;
-  right: 7%;
-  bottom: -50px;
-  font-size: 240px;
-  color: #005f9908;
-  line-height: 1;
-}
+
 .two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2611,11 +2533,7 @@ details p {
     transform: scale(1.045);
   }
 }
-@keyframes nudge {
-  50% {
-    transform: translateY(5px);
-  }
-}
+
 @keyframes orbit {
   to {
     transform: rotateX(65deg) rotate(330deg);
@@ -2794,10 +2712,7 @@ details p {
     font-size: clamp(49px, 10vw, 76px);
     max-width: 620px;
   }
-  .hero-eyebrow {
-    font-size: 8px;
-    margin-bottom: 25px;
-  }
+
   .hero-bottom {
     display: block;
     margin-top: 25px;
@@ -2814,9 +2729,7 @@ details p {
     padding: 12px 17px;
     gap: 12px;
   }
-  .scroll-cue {
-    margin-top: 27px;
-  }
+
   .campus-stage {
     height: clamp(400px, 110vw, 540px);
   }
@@ -2954,10 +2867,7 @@ details p {
   .vision-banner h2 {
     font-size: 36px;
   }
-  .vision-word {
-    bottom: -50px;
-    font-size: 130px;
-  }
+
   .footer-top {
     grid-template-columns: 1fr 1fr;
     gap: 35px 25px;
@@ -3428,13 +3338,7 @@ details p {
 .section-head .eyebrow {
   color: var(--green);
 }
-.little-line {
-  background: linear-gradient(
-    90deg,
-    var(--green-vivid),
-    var(--saffron)
-  ) !important;
-}
+
 
 /* Chips and pills read as green. */
 .chips button,

@@ -36,7 +36,6 @@ export function Gallery() {
     <>
       <PageHero title="A place. A people. A feeling." kicker="CAMPUS GALLERY" />
       <section className="section">
-        <span className="eyebrow">MOMENTS FROM AROUND CAMPUS</span>
         <h2 style={{ marginBottom: 8 }}>
           Drag, swipe, or use the arrow keys to <em>look around.</em>
         </h2>
@@ -46,7 +45,6 @@ export function Gallery() {
         />
       </section>
       <section className="section">
-        <span className="eyebrow">EVERY PHOTOGRAPH</span>
         <div className="gallery-grid">
           {slides.map((i, n) => (
             <button

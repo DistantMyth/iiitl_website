@@ -100,7 +100,7 @@ export function SiteMotion() {
               clearProps: "transform",
             });
           const heroDetails = root.querySelectorAll(
-            ".hero-eyebrow, .hero-bottom, .scroll-cue, .page-hero .breadcrumb, .page-hero > .eyebrow, .page-hero > p",
+            ".hero-bottom, .page-hero .breadcrumb, .page-hero > .eyebrow, .page-hero > p",
           );
           if (heroDetails.length)
             gsap.from(heroDetails, {
